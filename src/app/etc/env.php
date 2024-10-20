@@ -57,7 +57,7 @@ return [
                 'host' => 'mariadb',
                 'dbname' => 'magento',
                 'username' => 'root',
-                'password' => 'john2803',
+                'password' => 'magento247',
                 'model' => 'mysql4',
                 'engine' => 'innodb',
                 'initStatements' => 'SET NAMES utf8;',
