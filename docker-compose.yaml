@@ -6,6 +6,14 @@ services:
       - srcdata:/var/www/html
       - ./src/app:/var/www/html/app
       - ./php.ini:/usr/local/etc/php/php.ini
+      - ./src/composer.json:/var/www/html/composer.json
+      - ./src/composer.lock:/var/www/html/composer.lock
+      #Mounting the vendor will slow down (really slow down) all you do
+      #  in your container alternatively you can rsync or cp the
+      #  vendor folder in the container after running composer
+      #  install/update. Try and see what works for you. The copy cmd:
+      #  "docker compose cp php:/var/www/html/vendor/. src/vendor/"
+      #- ./src/vendor:/var/www/html/vendor:cached
     working_dir: /var/www/html
     networks:
       - magento
