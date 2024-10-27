@@ -89,3 +89,6 @@ docker compose exec php composer update && /
 docker compose cp php:/var/www/html/vendor/. src/vendor/
 ```
 
+Work in progress:
+- the auto generate static content does not always work
+- debugging not yet installed and tested
