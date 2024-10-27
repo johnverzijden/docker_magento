@@ -21,7 +21,15 @@ while the sql file is not in the container. You have to options here:
 
 Easiest way is to copy it first:
 ```bash
-docker compose cp empty_magento_247.sql php:.
+docker compose cp empty_magento_247.sql php:/var/www/html/magento.sql
+```
+During the mount files of the /var/www/html/app will be mounted to the
+/src folder in the docker root. That is where you will build, change and
+custom code. Docker will mount the folders as "root" during the initial 
+mount. You need to set them to owner app:app. (note: the double slash you 
+will only need on a windows docker installation)
+```bash
+docker compose exec --user root php chown -R app:app //var/www/html
 ```
 
 From here the easiest way to go, is open a shell in de php container. 
@@ -39,7 +47,7 @@ You are now on the Magento command line root (/var/www/html).
 
 Import the database:
 ```bash
-mysql -umagento -pmagento magento < empty_magento_247.sql
+mysql -h mariadb -uroot -pmagento magento < magento.sql
 ```
 
 For the following you need user and password tokens from Magento. 
@@ -63,4 +71,21 @@ the port (like: 8080:80).
 
 The default server name (see nginx.conf) is "local.magento".
 So you should be able to open the magento website by
-"http://local.magento" or "http://local.magento:8080"
+"http://local.magento" or if you changed the port "http://local.magento:8080"
+
+Some things to consider:
+
+The vendor folder is not mounted by default. After running composer install
+in the container it will still be empty in the /src/vendor. However, debugging 
+in your IDE will need the vendor folder. If you would like to keep your
+performance in your PHP container, do not mount the vendor, but just copy
+the vendor now end then, after a composer install/update. I considered making
+a special script, but hey, better do that yourself, soo you know what it
+is doing plus you can customise it.
+
+Such a script could look like:
+```bash
+docker compose exec php composer update && /
+docker compose cp php:/var/www/html/vendor/. src/vendor/
+```
+
