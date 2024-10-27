@@ -99,8 +99,8 @@ RUN docker-php-ext-configure \
 RUN curl -sS https://getcomposer.org/installer | \
   php -- --version=2.6.6 --install-dir=/usr/local/bin --filename=composer
 
-RUN mkdir -p /var/www/html/var /var/www/html/pub/static /var/www/html/generated /vendor && \
-    chown -R app:app /var/www/html/var /var/www/html/pub/static /var/www/html/generated /vendor
+RUN mkdir -p /var/www/html/var /var/www/html/pub/static /var/www/html/generated /var/www/html/vendor
+RUN chown -R app:app /var/www/html
 
 USER app:app
 VOLUME /var/www
