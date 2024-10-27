@@ -34,10 +34,10 @@ services:
     image: mariadb:10.6
     container_name: magento_mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: john2803
+      MYSQL_ROOT_PASSWORD: magento
       MYSQL_DATABASE: magento
       MYSQL_USER: magento
-      MYSQL_PASSWORD: john2803
+      MYSQL_PASSWORD: magento
     networks:
       - magento
     ports:
