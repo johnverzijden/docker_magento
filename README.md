@@ -21,7 +21,15 @@ while the sql file is not in the container. You have to options here:
 
 Easiest way is to copy it first:
 ```bash
-docker compose cp empty_magento_247.sql php:.
+docker compose cp empty_magento_247.sql php:/var/www/html/magento.sql
+```
+During the mount files of the /var/www/html/app will be mounted to the
+/src folder in the docker root. That is where you will build, change and
+custom code. Docker will mount the folders as "root" during the initial 
+mount. You need to set them to owner app:app. (note: the double slash you 
+will only need on a windows docker installation)
+```bash
+docker compose exec --user root php chown -R app:app //var/www/html
 ```
 
 From here the easiest way to go, is open a shell in de php container. 
@@ -39,7 +47,7 @@ You are now on the Magento command line root (/var/www/html).
 
 Import the database:
 ```bash
-mysql -umagento -pmagento magento < empty_magento_247.sql
+mysql -umagento -pmagento magento < magento.sql
 ```
 
 For the following you need user and password tokens from Magento. 
