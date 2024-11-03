@@ -15,6 +15,12 @@ services:
       #  "docker compose cp php:/var/www/html/vendor/. src/vendor/"
       #- ./src/vendor:/var/www/html/vendor:cached
     working_dir: /var/www/html
+    extra_hosts:
+      #Without the host.docker.internal set to you workstations IP
+      #  the debugger (xdebug) will not work; set the host.docker.internal
+      #  in your etc/hosts file to your workstation internal IP
+      #  (like 192.168.1.x)
+      - "host.docker.internal:host-gateway"
     networks:
       - magento
     dns:

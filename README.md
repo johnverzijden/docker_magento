@@ -88,7 +88,22 @@ Such a script could look like:
 docker compose exec php composer update && /
 docker compose cp php:/var/www/html/vendor/. src/vendor/
 ```
+Admin login
+
+Create your own admin login with:
+```bash
+ bin/magento admin:user:create --admin-user=<username> --admin-password=<min-7-incl-number>
+```
+
+Debugging:
+
+Making the debugger work in your IDE can be a bit tricky in this configuration.
+
+Hints:
+- add "xdebug_info();" in your pub/index.php (will give you information about the xdebug configuration)
+- set host.docker.internal=<your workstations internal IP> in your /etc/hosts file (windows: windows/system32/drivers/etc)
+- most IDE's do have a docker debug setup; follow the instructions for your IDE
+
 
 Work in progress:
 - the auto generate static content does not always work
-- debugging not yet installed and tested
