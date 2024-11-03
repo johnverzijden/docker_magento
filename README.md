@@ -104,6 +104,15 @@ Hints:
 - set host.docker.internal=<your workstations internal IP> in your /etc/hosts file (windows: windows/system32/drivers/etc)
 - most IDE's do have a docker debug setup; follow the instructions for your IDE
 
+Two factor authorisation.
+
+During development you don't want to have the 2FA constantly asking for authorisation.
+You can switch it off locally during development by:
+
+```bash
+php bin/magento module:disable Magento_AdminAdobeImsTwoFactorAuth
+php bin/magento module:disable Magento_TwoFactorAuth
+```
 
 Work in progress:
 - the auto generate static content does not always work
