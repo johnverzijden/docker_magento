@@ -5,6 +5,7 @@ services:
     volumes:
       - srcdata:/var/www/html
       - ./src/app:/var/www/html/app
+      - ./src/generated:/var/www/html/generated
       - ./php.ini:/usr/local/etc/php/php.ini
       - ./src/composer.json:/var/www/html/composer.json
       - ./src/composer.lock:/var/www/html/composer.lock
