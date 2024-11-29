@@ -102,6 +102,8 @@ RUN curl -sS https://getcomposer.org/installer | \
 RUN mkdir -p /var/www/html/var /var/www/html/pub/static /var/www/html/generated /var/www/html/vendor
 RUN chown -R app:app /var/www/html
 
-USER app:app
+# Ensure the container starts as root, allowing PHP-FPM to switch to 'app'
+ENTRYPOINT ["php-fpm"]
+
 VOLUME /var/www
 WORKDIR /var/www/html

@@ -6,6 +6,8 @@ services:
       - srcdata:/var/www/html
       - ./src/app:/var/www/html/app
       - ./src/generated:/var/www/html/generated
+      - ./src/pub:/var/www/html/pub
+      - ./src/var/view_preprocessed:/var/www/html/var/view_preprocessed
       - ./php.ini:/usr/local/etc/php/php.ini
       - ./src/composer.json:/var/www/html/composer.json
       - ./src/composer.lock:/var/www/html/composer.lock
